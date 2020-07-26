@@ -1,0 +1,14 @@
+{
+  "name": "pizzaria-backend",
+  "version": "1.0.0",
+  "description": "API do projeto pizzaria",
+  "main": "app.js",
+  "scripts": {},
+  "author": "Bruno Teixeira",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mysql": "^2.18.1"
+  }
+}
