@@ -4,8 +4,8 @@ exports.result = async (res) => {
   await db.pool.query("SELECT * FROM pizzas", (err, results) => {
     if (err) {
       console.log(err);
-      return res.json({ message: "Conect failed" });
+      return res.json({ error: "Conect failed" });
     }
-    res.json(results);
+    return res.json(results);
   });
 };
