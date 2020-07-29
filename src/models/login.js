@@ -1,5 +1,6 @@
 const db = require("./poolDb");
 const bcrypt = require("bcrypt");
+const { generatorJWT } = require("../middleware/auth");
 
 exports.login = async (res, email, passwd) => {
   await db.pool.query(
@@ -14,7 +15,14 @@ exports.login = async (res, email, passwd) => {
         const dbPassword = result[0].password;
         bcrypt.compare(passwd, dbPassword, (err, verif) => {
           if (verif) {
-            return res.json({ msg: "success" });
+            const user = {
+              id: result[0].id,
+              email: result[0].email,
+            };
+            return res.json({
+              token: generatorJWT(user),
+              name: result[0].name,
+            });
           } else {
             return res.json({ msg: "error" });
           }
